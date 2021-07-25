@@ -1,0 +1,36 @@
+{
+  "author": {
+    "name": "Benjamin Lehmann"
+  },
+  "bugs": {
+    "url": "https://github.com/bclehmann/phoebus/issues"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+
+  },
+  "devDependencies": {
+
+  },
+  "deprecated": false,
+  "description": "A library with the goal of solving the same problems as Apollo but for Rest instead of GraphQL.",
+  "homepage": "https://github.com/bclehmann/phoebus",
+  "keywords": [
+    "phoebus",
+	"rest",
+	"api"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "name": "phoebus-core",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bclehmann/phoebus.git"
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "types": "index.d.ts",
+  "version": "1.3.15"
+}
