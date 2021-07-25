@@ -10,13 +10,14 @@ const sumQuery = store.createQuery<number[], number>(
 let refreshes = 0;
 let fetches = 0;
 
-console.log([1, 2, 3].reduce((prev, curr) => prev + curr))
-
 setInterval(() => {
-    sumQuery.body = [Math.random(), Math.random(), Math.random()]
-    console.log(`Refresh #${++refreshes}: ${sumQuery.body}`);
+  sumQuery.body = [Math.random(), Math.random(), Math.random()];
+  refreshes++;
 }, 500);
 
 setInterval(async () => {
-    console.log(`Fetch #${++fetches}: ${await sumQuery.getResult()}`)
+  fetches++;
+  console.log(`Result: ${await sumQuery.getResult()}`);
+  console.log(`\tFetches: ${fetches}`);
+  console.log(`\tRefreshes: ${refreshes}`);
 }, 100);
