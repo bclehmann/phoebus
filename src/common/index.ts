@@ -1,27 +1,25 @@
-export interface StorageInformation {
-  store: Store;
-  storageKey: string;
-}
 
 export type Resolver<TRequestBody, TResult> = (
   body: TRequestBody
 ) => Promise<TResult>;
 
 export class Query<TRequestBody, TResult> {
-  readonly storageInfo: StorageInformation;
-
   private _body: TRequestBody;
   private cacheIsDirty: boolean;
   private readonly resolver: Resolver<TRequestBody, TResult>;
+  private readonly getter: () => TResult;
+  private readonly setter: (value: TResult) => void;
 
   constructor(
-    storageInfo: StorageInformation,
     resolver: Resolver<TRequestBody, TResult>,
-    body: TRequestBody
+    body: TRequestBody,
+	getter: () => TResult,
+	setter: (value: TResult) => void
   ) {
-    this.storageInfo = storageInfo;
     this.resolver = resolver;
     this._body = body;
+	this.getter = getter;
+	this.setter = setter;
   }
 
   get body(): TRequestBody {
@@ -40,9 +38,7 @@ export class Query<TRequestBody, TResult> {
       await this.updateStore();
     }
 
-    return this.storageInfo.store.getValue<TResult>(
-      this.storageInfo.storageKey
-    );
+    return this.getter();
   };
 
   private executeQuery: () => Promise<TResult> = async () => {
@@ -51,7 +47,7 @@ export class Query<TRequestBody, TResult> {
 
   private updateStore: () => Promise<void> = async () => {
     const result = await this.executeQuery();
-    this.storageInfo.store.setValue(this.storageInfo.storageKey, result);
+    this.setter(result);
     this.cacheIsDirty = false;
   };
 }
@@ -70,20 +66,18 @@ export class Store {
     initialBody: TRequestBody
   ) {
     return new Query(
-      {
-        store: this,
-        storageKey,
-      },
       resolver,
-      initialBody
+      initialBody,
+	  () => this.getValue<TResult>(storageKey),
+	  (value: TResult) => this.setValue<TResult>(storageKey, value)
     );
   }
 
-  setValue<T>(this: Store, key: string, value: T) {
+  private setValue<T>(this: Store, key: string, value: T) {
     this.data[key] = value;
   }
 
-  getValue<T>(this: Store, key: string) {
+  private getValue<T>(this: Store, key: string) {
     return this.data[key] as T;
   }
 }
