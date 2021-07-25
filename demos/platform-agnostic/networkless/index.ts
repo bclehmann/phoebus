@@ -4,7 +4,7 @@ const store = new Store();
 const sumQuery = store.createQuery<number[], number>(
   "sum",
   async (nums) => nums.reduce((prev, curr) => prev + curr),
-  []
+  [0]
 );
 
 let refreshes = 0;
