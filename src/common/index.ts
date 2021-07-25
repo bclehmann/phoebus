@@ -20,6 +20,7 @@ export class Query<TRequestBody, TResult> {
     this._body = body;
 	this.getter = getter;
 	this.setter = setter;
+	this.cacheIsDirty = true;
   }
 
   get body(): TRequestBody {
