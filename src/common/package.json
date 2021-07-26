@@ -10,7 +10,7 @@
 
   },
   "devDependencies": {
-
+    "typescript": "^4.3.5"
   },
   "deprecated": false,
   "description": "A library with the goal of solving the same problems as Apollo, but for usecases beyond GraphQL, even outside of AJAX.",

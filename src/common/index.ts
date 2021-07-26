@@ -1,4 +1,3 @@
-
 export type Resolver<TRequestBody, TResult> = (
   body: TRequestBody
 ) => Promise<TResult>;
@@ -6,6 +5,7 @@ export type Resolver<TRequestBody, TResult> = (
 export class Query<TRequestBody, TResult> {
   private _body: TRequestBody;
   private cacheIsDirty: boolean;
+  private promiseInFlight: Promise<TResult> | null;
   private readonly resolver: Resolver<TRequestBody, TResult>;
   private readonly getter: () => TResult;
   private readonly setter: (value: TResult) => void;
@@ -13,14 +13,14 @@ export class Query<TRequestBody, TResult> {
   constructor(
     resolver: Resolver<TRequestBody, TResult>,
     body: TRequestBody,
-	getter: () => TResult,
-	setter: (value: TResult) => void
+    getter: () => TResult,
+    setter: (value: TResult) => void
   ) {
     this.resolver = resolver;
     this._body = body;
-	this.getter = getter;
-	this.setter = setter;
-	this.cacheIsDirty = true;
+    this.getter = getter;
+    this.setter = setter;
+    this.cacheIsDirty = true;
   }
 
   get body(): TRequestBody {
@@ -35,6 +35,10 @@ export class Query<TRequestBody, TResult> {
   getResult: (forceRefetch?: boolean) => Promise<TResult> = async (
     forceRefetch
   ) => {
+    if(this.promiseInFlight && !forceRefetch) {
+      return this.promiseInFlight;
+    }
+
     if (forceRefetch || this.cacheIsDirty) {
       await this.updateStore();
     }
@@ -47,9 +51,11 @@ export class Query<TRequestBody, TResult> {
   };
 
   private updateStore: () => Promise<void> = async () => {
-    const result = await this.executeQuery();
+    this.promiseInFlight = this.executeQuery();
+    const result = await this.promiseInFlight;
     this.setter(result);
     this.cacheIsDirty = false;
+    this.promiseInFlight = null;
   };
 }
 
@@ -69,8 +75,8 @@ export class Store {
     return new Query(
       resolver,
       initialBody,
-	  () => this.getValue<TResult>(storageKey),
-	  (value: TResult) => this.setValue<TResult>(storageKey, value)
+      () => this.getValue<TResult>(storageKey),
+      (value: TResult) => this.setValue<TResult>(storageKey, value)
     );
   }
 
