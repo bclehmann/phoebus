@@ -32,6 +32,11 @@ export class Query<TRequestBody, TResult> {
     this.cacheIsDirty = true;
   }
 
+  /**
+   * Returns the result of the query. This function will cache the result by default if the body has not changed since the last fetch.
+   * @param forceRefetch - Determines whether to recompute the query, even if the cache is valid.
+   * @returns TResponse - The result of the query.
+   */
   getResult: (forceRefetch?: boolean) => Promise<TResult> = async (
     forceRefetch
   ) => {
@@ -59,6 +64,10 @@ export class Query<TRequestBody, TResult> {
   };
 }
 
+
+/**
+ * Represents a smart cache. An instance of this class is required for any cached queries.
+ */
 export class Store {
   private data: { [storageKey: string]: any };
   private usedKeys: Set<string>;
@@ -68,6 +77,15 @@ export class Store {
     this.usedKeys = new Set();
   }
 
+  /**
+   * Creates a query, which is used to smartly cache the results of functions.
+   * 
+   * @param this - This parameter cannot be filled in by client code. This prevents use if the this context has been redefined.
+   * @param storageKey - The key in the cache for this query. Must be unique within a store. 
+   * @param resolver - The function to call in order to resolve the query. This function is not called until the first request.
+   * @param initialBody - The initial parameter used.
+   * @returns Query<TRequestBody, TResult>
+   */
   createQuery<TRequestBody, TResult>(
     this: Store,
     storageKey: string,
