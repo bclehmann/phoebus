@@ -36,3 +36,15 @@ describe("produces correct output", () => {
     await expect(res2).toEqual(1);
   });
 });
+
+describe("preserves invariants", () => {
+    const identityFunction = (x) => x;
+    const store = new Store();
+
+    it("ensures storageKeys are always unique within a store", () => {
+        return expect(() => {
+            store.createQuery("key", identityFunction, {});
+            store.createQuery("key", identityFunction, {});
+        }).toThrow();
+    });
+})

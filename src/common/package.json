@@ -29,7 +29,7 @@
   },
   "scripts": {
     "build": "tsc",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "Echo tests can be run from the /tests directory."
   },
   "types": "index.d.ts",
   "version": "0.0.1"

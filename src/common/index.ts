@@ -35,7 +35,7 @@ export class Query<TRequestBody, TResult> {
   getResult: (forceRefetch?: boolean) => Promise<TResult> = async (
     forceRefetch
   ) => {
-    if(this.promiseInFlight && !forceRefetch) {
+    if (this.promiseInFlight && !forceRefetch) {
       return this.promiseInFlight;
     }
 
@@ -61,9 +61,11 @@ export class Query<TRequestBody, TResult> {
 
 export class Store {
   private data: { [storageKey: string]: any };
+  private usedKeys: Set<string>;
 
   constructor() {
     this.data = {};
+    this.usedKeys = new Set();
   }
 
   createQuery<TRequestBody, TResult>(
@@ -72,6 +74,14 @@ export class Store {
     resolver: (body: TRequestBody) => Promise<TResult>,
     initialBody: TRequestBody
   ) {
+    if (this.usedKeys.has(storageKey)) {
+      throw new Error(
+        `The storageKey ${storageKey} is already in use in this store. Storage keys must be unique.`
+      );
+    }
+
+    this.usedKeys.add(storageKey);
+
     return new Query(
       resolver,
       initialBody,
