@@ -16,18 +16,22 @@ describe("avoids unnecessary refetches", () => {
   );
 
   it("doesn't invoke if a promise is in flight", () => {
-    query.getResult().then((r) => expect(r).toEqual(0));
-    query.getResult().then((r) => expect(r).toEqual(0));
-    query.getResult().then((r) => expect(r).toEqual(0));
-    query.getResult().then((r) => expect(r).toEqual(0));
-    query.getResult().then((r) => expect(r).toEqual(0));
-    query.getResult().then((r) => expect(r).toEqual(0));
+    return Promise.all([
+      query.getResult().then((r) => expect(r).toEqual(0)),
+      query.getResult().then((r) => expect(r).toEqual(0)),
+      query.getResult().then((r) => expect(r).toEqual(0)),
+      query.getResult().then((r) => expect(r).toEqual(0)),
+      query.getResult().then((r) => expect(r).toEqual(0)),
+      query.getResult().then((r) => expect(r).toEqual(0)),
+    ]);
   });
 
   it("respects forceRefresh", () => {
-    query.getResult(true).then((r) => expect(r).toEqual(1));
-    query.getResult(true).then((r) => expect(r).toEqual(2));
-    query.getResult(true).then((r) => expect(r).toEqual(3));
+    return Promise.all([
+      query.getResult(true).then((r) => expect(r).toEqual(1)),
+      query.getResult(true).then((r) => expect(r).toEqual(2)),
+      query.getResult(true).then((r) => expect(r).toEqual(3)),
+    ]);
   });
 });
 
