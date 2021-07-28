@@ -7,14 +7,14 @@ export class Query<TRequestBody, TResult> {
   private cacheIsDirty: boolean;
   private promiseInFlight: Promise<TResult> | null;
   private readonly resolver: Resolver<TRequestBody, TResult>;
-  private readonly getter: () => TResult;
-  private readonly setter: (value: TResult) => void;
+  private readonly getter: (body: TRequestBody) => TResult;
+  private readonly setter: (body: TRequestBody, value: TResult) => void;
 
   constructor(
     resolver: Resolver<TRequestBody, TResult>,
     body: TRequestBody,
-    getter: () => TResult,
-    setter: (value: TResult) => void
+    getter: (body: TRequestBody) => TResult,
+    setter: (body: TRequestBody, value: TResult) => void
   ) {
     this.resolver = resolver;
     this._body = body;
@@ -48,7 +48,7 @@ export class Query<TRequestBody, TResult> {
       await this.updateStore();
     }
 
-    return this.getter();
+    return this.getter(this.body);
   };
 
   private executeQuery: () => Promise<TResult> = async () => {
@@ -58,18 +58,17 @@ export class Query<TRequestBody, TResult> {
   private updateStore: () => Promise<void> = async () => {
     this.promiseInFlight = this.executeQuery();
     const result = await this.promiseInFlight;
-    this.setter(result);
+    this.setter(this.body, result);
     this.cacheIsDirty = false;
     this.promiseInFlight = null;
   };
 }
 
-
 /**
  * Represents a smart cache. An instance of this class is required for any cached queries.
  */
 export class Store {
-  private data: { [storageKey: string]: any };
+  private data: { [storageKey: string]: StoreEntry<any, any> };
   private usedKeys: Set<string>;
 
   constructor() {
@@ -79,9 +78,9 @@ export class Store {
 
   /**
    * Creates a query, which is used to smartly cache the results of functions.
-   * 
+   *
    * @param this - This parameter cannot be filled in by client code. This prevents use if the this context has been redefined.
-   * @param storageKey - The key in the cache for this query. Must be unique within a store. 
+   * @param storageKey - The key in the cache for this query. Must be unique within a store.
    * @param resolver - The function to call in order to resolve the query. This function is not called until the first request.
    * @param initialBody - The initial parameter used.
    * @returns Query<TRequestBody, TResult>
@@ -99,20 +98,97 @@ export class Store {
     }
 
     this.usedKeys.add(storageKey);
+    this.data[storageKey] = new StoreEntry<TRequestBody, TResult>();
 
     return new Query(
       resolver,
       initialBody,
-      () => this.getValue<TResult>(storageKey),
-      (value: TResult) => this.setValue<TResult>(storageKey, value)
+      (body: TRequestBody) =>
+        this.getValue<TRequestBody, TResult>(storageKey, body),
+      (body: TRequestBody, value: TResult) =>
+        this.setValue<TRequestBody, TResult>(storageKey, body, value)
     );
   }
 
-  private setValue<T>(this: Store, key: string, value: T) {
-    this.data[key] = value;
+  private setValue<TRequestBody, TResult>(
+    this: Store,
+    key: string,
+    body: TRequestBody,
+    value: TResult
+  ) {
+    this.data[key].set(body, value);
   }
 
-  private getValue<T>(this: Store, key: string) {
-    return this.data[key] as T;
+  /**
+   * Gets a value from the store, given its storage key. This will never trigger a refetch even if the cache is dirty.
+   *
+   * @param this - This parameter cannot be filled in by client code. This prevents use if the this context has been redefined.
+   * @param storageKey - The key of the entry to fetch.
+   * @param body - The body of the request you want to retrieve.
+   * @returns TResult | null - The value associated with this key, or null if it does not exist.
+   */
+  getValue<TRequestBody, TResult>(
+    this: Store,
+    key: string,
+    body: TRequestBody
+  ) {
+    return key in this.data ? (this.data[key].get(body) as TResult) : null;
+  }
+
+  /**
+   * Gets the most recent value from the store, given its storage key.
+   * @param this
+   * @param storageKey - The key of the entry to fetch.
+   * @returns TResult | null - The most recent value associated with this key, or null if it does not exist.
+   */
+  getCurrentValue<TResult>(this: Store, storageKey: string) {
+    return storageKey in this.data ? this.data[storageKey].getLast() : null;
+  }
+}
+
+class StoreEntry<TRequestBody, TResult> {
+  private data: { [stringifiedBody: string]: TResult };
+  private lastSetKey: string | null;
+
+  constructor() {
+    this.data = {};
+    this.lastSetKey = null;
+  }
+
+  get(this: StoreEntry<TRequestBody, TResult>, body: TRequestBody) {
+    const key = JSON.stringify(body);
+    return this.getWithStringKey(key);
+  }
+
+  set(
+    this: StoreEntry<TRequestBody, TResult>,
+    body: TRequestBody,
+    value: TResult
+  ) {
+    this.setWithStringKey(JSON.stringify(body), value);
+  }
+
+  getLast(this: StoreEntry<TRequestBody, TResult>) {
+    if (this.lastSetKey === null) {
+      return null;
+    }
+
+    return this.getWithStringKey(this.lastSetKey);
+  }
+
+  private getWithStringKey(
+    this: StoreEntry<TRequestBody, TResult>,
+    key: string
+  ) {
+    return key in this.data ? this.data[key] : null;
+  }
+
+  private setWithStringKey(
+    this: StoreEntry<TRequestBody, TResult>,
+    key: string,
+    value: TResult
+  ) {
+    this.data[key] = value;
+    this.lastSetKey = key;
   }
 }
