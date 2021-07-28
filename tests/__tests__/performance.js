@@ -3,11 +3,11 @@ import { Store } from "../../src/common/dist";
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-describe("avoids unnecessary refetches", () => {
+const getSlowCounter = () => {
   let counter = 0;
   const store = new Store();
-  const query = store.createQuery(
-    "foo",
+  const slowCounter = store.createQuery(
+    "slowCounter",
     async () => {
       await sleep(500);
       return counter++;
@@ -15,23 +15,44 @@ describe("avoids unnecessary refetches", () => {
     {}
   );
 
+  return slowCounter;
+}
+
+describe("avoids unnecessary refetches", () => {
   it("doesn't invoke if a promise is in flight", () => {
+    const slowCounter = getSlowCounter();
+
     return Promise.all([
-      query.getResult().then((r) => expect(r).toEqual(0)),
-      query.getResult().then((r) => expect(r).toEqual(0)),
-      query.getResult().then((r) => expect(r).toEqual(0)),
-      query.getResult().then((r) => expect(r).toEqual(0)),
-      query.getResult().then((r) => expect(r).toEqual(0)),
-      query.getResult().then((r) => expect(r).toEqual(0)),
+      slowCounter.getResult().then((r) => expect(r).toEqual(0)),
+      slowCounter.getResult().then((r) => expect(r).toEqual(0)),
+      slowCounter.getResult().then((r) => expect(r).toEqual(0)),
+      slowCounter.getResult().then((r) => expect(r).toEqual(0)),
+      slowCounter.getResult().then((r) => expect(r).toEqual(0)),
+      slowCounter.getResult().then((r) => expect(r).toEqual(0)),
     ]);
   });
 
   it("respects forceRefresh", () => {
+    const slowCounter = getSlowCounter();
+
     return Promise.all([
-      query.getResult(true).then((r) => expect(r).toEqual(1)),
-      query.getResult(true).then((r) => expect(r).toEqual(2)),
-      query.getResult(true).then((r) => expect(r).toEqual(3)),
+      slowCounter.getResult(true).then((r) => expect(r).toEqual(0)),
+      slowCounter.getResult(true).then((r) => expect(r).toEqual(1)),
+      slowCounter.getResult(true).then((r) => expect(r).toEqual(2)),
     ]);
+  });
+
+  it("fetches old values from cache", async () => {
+    const slowCounter = getSlowCounter();
+    
+    slowCounter.body = "0";
+    await expect(await slowCounter.getResult()).toEqual(0);
+    
+    slowCounter.body = "1";
+    await expect(await slowCounter.getResult()).toEqual(1);
+
+    slowCounter.body = "0";
+    await expect(await slowCounter.getResult()).toEqual(0);
   });
 });
 
