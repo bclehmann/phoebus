@@ -170,7 +170,7 @@ class StoreEntry<TRequestBody, TResult> {
 
   getLast(this: StoreEntry<TRequestBody, TResult>) {
     if (this.lastSetKey === null) {
-      return CacheResult.createEmpty();
+      return CacheResult.notFound
     }
 
     return this.getWithStringKey(this.lastSetKey);
@@ -196,10 +196,7 @@ class StoreEntry<TRequestBody, TResult> {
 export class CacheResult<TResult> {
   found: boolean;
   value?: TResult;
-
-  static createEmpty(){
-    return new CacheResult(false);
-  }
+  static readonly notFound = new CacheResult(false);
 
   constructor(found: boolean, value?: TResult) {
     this.found = found;
