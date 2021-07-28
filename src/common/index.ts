@@ -35,11 +35,11 @@ export class Query<TRequestBody, TResult> {
     }
 
     const cachedResult = this.getter(this.body);
-    if (forceRefetch || cachedResult === null) {
+    if (forceRefetch || !cachedResult.found) {
       await this.updateStore();
     }
 
-    return this.getter(this.body)?.value ?? undefined;
+    return this.getter(this.body)!.value;
   };
 
   private executeQuery: () => Promise<TResult> = async () => {
@@ -117,7 +117,7 @@ export class Store {
    * @param this - This parameter cannot be filled in by client code. This prevents use if the this context has been redefined.
    * @param storageKey - The key of the entry to fetch.
    * @param body - The body of the request you want to retrieve.
-   * @returns CacheResult<TResult> | null - The value associated with this key, or null if it does not exist.
+   * @returns CacheResult<TResult> - The most recent value associated with this key, or an empty cache result if it does not exist.
    */
   getValue<TRequestBody, TResult>(
     this: Store,
@@ -135,19 +135,14 @@ export class Store {
    * Gets the most recent value from the store, given its storage key. This will never trigger a refetch even if the cache is dirty.
    * @param this
    * @param storageKey - The key of the entry to fetch.
-   * @returns CacheResult<TResult> | null - The most recent value associated with this key, or null if it does not exist.
+   * @returns CacheResult<TResult> - The most recent value associated with this key, or an empty cache result if it does not exist.
    */
   getCurrentValue<TResult>(this: Store, storageKey: string) {
     if (!(storageKey in this.data)) {
       return null;
     }
 
-    const cacheResult = this.data[storageKey].getLast() as CacheResult<TResult>;
-    if (cacheResult.found) {
-      return cacheResult;
-    } else {
-      return null;
-    }
+    return this.data[storageKey].getLast() as CacheResult<TResult>;
   }
 }
 
