@@ -125,7 +125,7 @@ export class Store {
     body: TRequestBody
   ) {
     if (!(storageKey in this.data)) {
-      return null;
+      throw new Error("The storage key does not exist in this store");
     }
 
     return this.data[storageKey].get(body) as CacheResult<TResult>;
@@ -139,7 +139,7 @@ export class Store {
    */
   getCurrentValue<TResult>(this: Store, storageKey: string) {
     if (!(storageKey in this.data)) {
-      return null;
+      throw new Error("The storage key does not exist in this store");
     }
 
     return this.data[storageKey].getLast() as CacheResult<TResult>;
@@ -170,7 +170,7 @@ class StoreEntry<TRequestBody, TResult> {
 
   getLast(this: StoreEntry<TRequestBody, TResult>) {
     if (this.lastSetKey === null) {
-      return new CacheResult(false);
+      return CacheResult.createEmpty();
     }
 
     return this.getWithStringKey(this.lastSetKey);
@@ -196,6 +196,10 @@ class StoreEntry<TRequestBody, TResult> {
 export class CacheResult<TResult> {
   found: boolean;
   value?: TResult;
+
+  static createEmpty(){
+    return new CacheResult(false);
+  }
 
   constructor(found: boolean, value?: TResult) {
     this.found = found;

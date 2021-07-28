@@ -44,16 +44,16 @@ describe("produces correct output", () => {
     await expect(res2).toEqual(1);
   });
 
-  it("getValue returns null if the StoreEntry does not exist", () => {
-    return expect(store.getValue("invalid")).toBeNull();
+  it("getValue throws if the StoreEntry does not exist", () => {
+    return expect(() => store.getValue("invalid")).toThrow();
   });
 
   it("getValue and getCurrentValue return null if the Query has never ran", () => {
     const testQuery = store.createQuery("test", () => "A", "A");
 
     return Promise.all([
-      expect(store.getValue("test", "A")).toBeNull(),
-      expect(store.getCurrentValue("test")).toBeNull(),
+      expect(store.getValue("test", "A").found).toBe(false),
+      expect(store.getCurrentValue("test").found).toBe(false),
     ]);
   });
 

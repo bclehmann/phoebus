@@ -17,7 +17,7 @@ setInterval(() => {
 
 setInterval(async () => {
   fetches++;
-  console.log(`Result: ${await sumQuery.getResult()}`);
+  console.log(`Result: ${(await sumQuery.getResult())}`);
   console.log(`\tFetches: ${fetches}`);
   console.log(`\tRefreshes: ${refreshes}`);
 }, 100);
