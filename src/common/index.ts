@@ -25,7 +25,7 @@ export class Query<TRequestBody, TResult> {
   /**
    * Returns the result of the query. This function will cache the result by default if the body has not changed since the last fetch.
    * @param forceRefetch - Determines whether to recompute the query, even if the cache is valid.
-   * @returns TResult | undefined - The result of the query.
+   * @returns TResult - The result of the query.
    */
   getResult: (forceRefetch?: boolean) => Promise<TResult | undefined> = async (
     forceRefetch
