@@ -128,12 +128,7 @@ export class Store {
       return null;
     }
 
-    const cacheResult = this.data[storageKey].get(body) as CacheResult<TResult>;
-    if (cacheResult.found) {
-      return cacheResult;
-    } else {
-      return null;
-    }
+    return this.data[storageKey].get(body) as CacheResult<TResult>;
   }
 
   /**
