@@ -1,4 +1,4 @@
-import { Store, Query } from "../../../src/common/dist";
+import { Store, Query } from "@phoebusjs/phoebus-core";
 
 const store = new Store();
 const sumQuery = store.createQuery<number[], number>(
