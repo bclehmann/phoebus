@@ -25,7 +25,7 @@ describe("produces correct output", () => {
     identityQuery.body = "B";
 
     const res2 = await identityQuery.getResult();
-    await expect(res2).toEqual("B");
+    await expect(res2).toEqual("Z");
   });
 
   it("is idempotent if body is unupdated", async () => {
