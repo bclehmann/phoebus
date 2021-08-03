@@ -29,7 +29,7 @@
     "url": "git+https://github.com/bclehmann/phoebus.git"
   },
   "scripts": {
-    "build": "tsc && npx typedoc index.ts --theme minimal --excludeNotDocumented",
+    "build": "tsc && npx typedoc index.ts --theme minimal --excludeNotDocumented --out ../../docs/core",
     "test": "Echo tests can be run from the /tests directory."
   },
   "types": "index.d.ts",
