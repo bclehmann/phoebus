@@ -4,6 +4,7 @@
     "url": "https://github.com/bclehmann/phoebus/issues"
   },
   "devDependencies": {
+    "typedoc": "^0.21.5",
     "typescript": "^4.3.5"
   },
   "deprecated": false,
@@ -28,7 +29,7 @@
     "url": "git+https://github.com/bclehmann/phoebus.git"
   },
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && npx typedoc index.ts --theme minimal --excludeNotDocumented",
     "test": "Echo tests can be run from the /tests directory."
   },
   "types": "index.d.ts",
