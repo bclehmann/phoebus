@@ -10,6 +10,8 @@
   "description": "A library with the goal of solving the same problems as Apollo, but for usecases beyond GraphQL, even outside of AJAX.",
   "files": [
     "package.json",
+    "package-lock.json",
+    "readme.md",
     "dist"
   ],
   "homepage": "https://github.com/bclehmann/phoebus",
@@ -30,5 +32,5 @@
     "test": "Echo tests can be run from the /tests directory."
   },
   "types": "index.d.ts",
-  "version": "0.0.2"
+  "version": "0.0.3"
 }
