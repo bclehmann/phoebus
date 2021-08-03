@@ -1,7 +1,15 @@
+/**
+ * A convenience type for functions who's results are cached.
+ */
 export type Resolver<TRequestBody, TResult> = (
   body: TRequestBody
 ) => Promise<TResult>;
 
+/**
+ * This class represents a query who's result is cached by a Store.
+ * 
+ * Do not instantiate this class directly. Instead, get an instance from `Store.createQuery`.
+ */
 export class Query<TRequestBody, TResult> {
   body: TRequestBody;
 
@@ -10,6 +18,9 @@ export class Query<TRequestBody, TResult> {
   private readonly getter: (body: TRequestBody) => CacheResult<TResult> | null;
   private readonly setter: (body: TRequestBody, value: TResult) => void;
 
+  /**
+   * This constructor is for internal use only. No guarantees are made that it will not change in non-breaking releases
+   */
   constructor(
     resolver: Resolver<TRequestBody, TResult>,
     body: TRequestBody,
@@ -63,6 +74,9 @@ export class Store {
   private data: { [storageKey: string]: StoreEntry<any, any> };
   private usedKeys: Set<string>;
 
+  /**
+   * Instantiates a new Store object
+   */
   constructor() {
     this.data = {};
     this.usedKeys = new Set();
