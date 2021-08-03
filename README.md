@@ -6,6 +6,10 @@ This project is an attempt to solve a lot of the same problems as Apollo, but fo
 
 [NPM Packages](https://www.npmjs.com/org/phoebusjs)
 
+[Docs](https://bclehmann.github.io/phoebus/)
+
+[Demos](https://github.com/bclehmann/phoebus/tree/main/demos)
+
 # Demos and Documentation
 
 See this project in action in the `demos` folder.
