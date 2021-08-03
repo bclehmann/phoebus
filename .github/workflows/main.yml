@@ -26,5 +26,7 @@ jobs:
         working-directory: ./src/common
       - run: npm run build --if-present
         working-directory: ./src/common
+      - run: npm install
+        working-directory: ./tests
       - run: npm test
         working-directory: ./tests
