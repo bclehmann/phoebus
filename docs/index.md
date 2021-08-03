@@ -1,5 +1,5 @@
 # Documentation:
-  - [Core](/core)
+  - [Core](core)
 
 # Links
   - [Github Repo](https://github.com/bclehmann/phoebus)
