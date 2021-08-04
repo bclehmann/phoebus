@@ -15,7 +15,7 @@
     "readme.md",
     "dist"
   ],
-  "homepage": "https://github.com/bclehmann/phoebus",
+  "homepage": "https://bclehmann.github.io/phoebus/",
   "keywords": [
     "phoebus",
     "rest",
@@ -33,5 +33,5 @@
     "test": "Echo tests can be run from the /tests directory."
   },
   "types": "index.d.ts",
-  "version": "0.1.0"
+  "version": "0.1.1"
 }
