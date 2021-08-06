@@ -33,5 +33,5 @@
     "test": "Echo tests can be run from the /tests directory."
   },
   "types": "index.d.ts",
-  "version": "0.1.1"
+  "version": "0.1.3"
 }
