@@ -17,7 +17,7 @@ This project is an attempt to solve a lot of the same problems as Apollo, but fo
 
 See this project in action in the `demos` folder.
 
-This project has TSdoc comments on all public APIs, however I have not yet built them into a full documentation page. This will happen soon, however.
+This project has TSdoc comments on all public APIs, and you can see that documentation [here](https://bclehmann.github.io/phoebus/).
 
 # Parts
 
