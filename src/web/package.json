@@ -1,0 +1,40 @@
+{
+  "author": "Benjamin Lehmann",
+  "bugs": {
+    "url": "https://github.com/bclehmann/phoebus/issues"
+  },
+  "dependencies": {
+    "@phoebusjs/phoebus-core": "^0.1.4",
+    "axios": "^0.21.1"
+  },
+  "devDependencies": {
+    "typedoc": "^0.21.5",
+    "typescript": "^4.3.5"
+  },
+  "deprecated": false,
+  "description": "A library with the goal of solving the same problems as Apollo, but for usecases beyond GraphQL, even outside of AJAX.",
+  "files": [
+    "package.json",
+    "readme.md",
+    "dist"
+  ],
+  "homepage": "https://bclehmann.github.io/phoebus/",
+  "keywords": [
+    "phoebus",
+    "rest",
+    "api"
+  ],
+  "license": "MIT",
+  "main": "dist/index.js",
+  "name": "@phoebusjs/phoebus-web",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bclehmann/phoebus.git"
+  },
+  "scripts": {
+    "build": "tsc && npx typedoc index.ts --theme minimal --excludeNotDocumented --readme none --out ../../docs/web",
+    "test": "Echo tests can be run from the /tests directory."
+  },
+  "types": "index.d.ts",
+  "version": "0.0.1"
+}
