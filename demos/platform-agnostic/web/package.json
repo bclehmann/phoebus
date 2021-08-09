@@ -1,0 +1,5 @@
+{
+    "dependencies": {
+        "@phoebusjs/phoebus-web": "^0.1.0"
+    }
+}
