@@ -3,8 +3,8 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>@phoebusjs/phoebus-core | @phoebusjs/phoebus-core</title>
-	<meta name="description" content="Documentation for @phoebusjs/phoebus-core">
+	<title>WebQuery | @phoebusjs/phoebus-web</title>
+	<meta name="description" content="Documentation for @phoebusjs/phoebus-web">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<style type="text/css">:root {
   --color-background: #fdfdfd;
@@ -2674,7 +2674,7 @@ img {
 		<div class="container">
 			<div class="table-wrap">
 				<div class="table-cell">
-					<strong><a href="index.html">@phoebusjs/phoebus-core</a></strong>
+					<strong><a href="../index.html">@phoebusjs/phoebus-web</a></strong>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -2704,80 +2704,164 @@ img {
 </header>
 <nav class="tsd-navigation secondary">
 	<ul>
-		<li class=" tsd-kind-class tsd-has-type-parameter">
-			<a href="classes/Query.html" class="tsd-kind-icon">Query</a>
+		<li class="current tsd-kind-class tsd-has-type-parameter">
+			<a href="WebQuery.html" class="tsd-kind-icon">Web<wbr>Query</a>
+			<ul>
+				<li class=" tsd-kind-constructor tsd-parent-kind-class tsd-has-type-parameter">
+					<a href="WebQuery.html#constructor" class="tsd-kind-icon">constructor</a>
+				</li>
+				<li class=" tsd-kind-property tsd-parent-kind-class">
+					<a href="WebQuery.html#getResult" class="tsd-kind-icon">get<wbr>Result</a>
+				</li>
+			</ul>
 		</li>
-		<li class=" tsd-kind-class">
-			<a href="classes/Store.html" class="tsd-kind-icon">Store</a>
+		<li class=" tsd-kind-interface tsd-has-type-parameter">
+			<a href="../interfaces/HttpResponse.html" class="tsd-kind-icon">Http<wbr>Response</a>
 		</li>
-		<li class=" tsd-kind-type-alias tsd-has-type-parameter">
-			<a href="index.html#Resolver" class="tsd-kind-icon">Resolver</a>
+		<li class=" tsd-kind-type-alias">
+			<a href="../index.html#HttpMethod" class="tsd-kind-icon">Http<wbr>Method</a>
 		</li>
 	</ul>
 </nav>
 <div class="container container-main">
 	<div class="content-wrap">
+		<section class="tsd-panel tsd-comment">
+			<div class="tsd-comment tsd-typography">
+				<div class="lead">
+					<p>A class for sending smartly-cached web queries.</p>
+				</div>
+			</div>
+		</section>
+		<section class="tsd-panel tsd-type-parameters">
+			<h3>Type parameters</h3>
+			<ul class="tsd-type-parameters">
+				<li>
+					<h4>TRequestBody</h4>
+				</li>
+				<li>
+					<h4>TResponse</h4>
+				</li>
+			</ul>
+		</section>
+		<section class="tsd-panel tsd-hierarchy">
+			<h3>Hierarchy</h3>
+			<ul class="tsd-hierarchy">
+				<li>
+					<span class="target">WebQuery</span>
+				</li>
+			</ul>
+		</section>
 		<section class="tsd-panel-group tsd-index-group">
 			<h2>Index</h2>
 			<section class="tsd-panel tsd-index-panel">
 				<div class="tsd-index-content">
 					<section class="tsd-index-section ">
-						<h3>Classes</h3>
+						<h3>Constructors</h3>
 						<ul class="tsd-index-list">
-							<li class="tsd-kind-class tsd-has-type-parameter"><a href="classes/Query.html" class="tsd-kind-icon">Query</a></li>
-							<li class="tsd-kind-class"><a href="classes/Store.html" class="tsd-kind-icon">Store</a></li>
+							<li class="tsd-kind-constructor tsd-parent-kind-class tsd-has-type-parameter"><a href="WebQuery.html#constructor" class="tsd-kind-icon">constructor</a></li>
 						</ul>
 					</section>
 					<section class="tsd-index-section ">
-						<h3>Type aliases</h3>
+						<h3>Properties</h3>
 						<ul class="tsd-index-list">
-							<li class="tsd-kind-type-alias tsd-has-type-parameter"><a href="index.html#Resolver" class="tsd-kind-icon">Resolver</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-class"><a href="WebQuery.html#getResult" class="tsd-kind-icon">get<wbr>Result</a></li>
 						</ul>
 					</section>
 				</div>
 			</section>
 		</section>
 		<section class="tsd-panel-group tsd-member-group ">
-			<h2>Type aliases</h2>
-			<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-has-type-parameter">
-				<a name="Resolver" class="tsd-anchor"></a>
-				<h3>Resolver</h3>
-				<div class="tsd-signature tsd-kind-icon">Resolver&lt;TRequestBody, TResult&gt;<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>body<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TRequestBody</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TResult</span><span class="tsd-signature-symbol">&gt;</span></div>
-				<aside class="tsd-sources">
-					<ul>
-						<li>Defined in <a href="https://github.com/bclehmann/phoebus/blob/36c95cd/src/common/index.ts#L4">index.ts:4</a></li>
-					</ul>
-				</aside>
-				<h4 class="tsd-type-parameters-title">Type parameters</h4>
-				<ul class="tsd-type-parameters">
-					<li>
-						<h4>TRequestBody</h4>
-					</li>
-					<li>
-						<h4>TResult</h4>
+			<h2>Constructors</h2>
+			<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class tsd-has-type-parameter">
+				<a name="constructor" class="tsd-anchor"></a>
+				<h3>constructor</h3>
+				<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-has-type-parameter">
+					<li class="tsd-signature tsd-kind-icon">new <wbr>Web<wbr>Query&lt;TRequestBody, TResponse&gt;<span class="tsd-signature-symbol">(</span>uri<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, httpMethod<span class="tsd-signature-symbol">: </span><a href="../index.html#HttpMethod" class="tsd-signature-type" data-tsd-kind="Type alias">HttpMethod</a>, initialBody<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">TRequestBody</span>, headers<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-symbol">{}</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="WebQuery.html" class="tsd-signature-type" data-tsd-kind="Class">WebQuery</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TRequestBody</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">TResponse</span><span class="tsd-signature-symbol">&gt;</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/bclehmann/phoebus/blob/36c95cd/src/web/index.ts#L38">index.ts:38</a></li>
+							</ul>
+						</aside>
+						<h4 class="tsd-type-parameters-title">Type parameters</h4>
+						<ul class="tsd-type-parameters">
+							<li>
+								<h4>TRequestBody</h4>
+							</li>
+							<li>
+								<h4>TResponse</h4>
+							</li>
+						</ul>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>uri: <span class="tsd-signature-type">string</span></h5>
+							</li>
+							<li>
+								<h5>httpMethod: <a href="../index.html#HttpMethod" class="tsd-signature-type" data-tsd-kind="Type alias">HttpMethod</a></h5>
+							</li>
+							<li>
+								<h5><span class="tsd-flag ts-flagOptional">Optional</span> initialBody: <span class="tsd-signature-type">TRequestBody</span></h5>
+							</li>
+							<li>
+								<h5><span class="tsd-flag ts-flagOptional">Optional</span> headers: <span class="tsd-signature-symbol">{}</span></h5>
+								<ul class="tsd-parameters">
+									<li class="tsd-parameter-index-signature">
+										<h5><span class="tsd-signature-symbol">[</span>key: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">]: </span><span class="tsd-signature-type">string</span></h5>
+									</li>
+								</ul>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <a href="WebQuery.html" class="tsd-signature-type" data-tsd-kind="Class">WebQuery</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TRequestBody</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">TResponse</span><span class="tsd-signature-symbol">&gt;</span></h4>
 					</li>
 				</ul>
+			</section>
+		</section>
+		<section class="tsd-panel-group tsd-member-group ">
+			<h2>Properties</h2>
+			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+				<a name="getResult" class="tsd-anchor"></a>
+				<h3>get<wbr>Result</h3>
+				<div class="tsd-signature tsd-kind-icon">get<wbr>Result<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>forceRefetch<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/HttpResponse.html" class="tsd-signature-type" data-tsd-kind="Interface">HttpResponse</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TResponse</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> = ...</span></div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in <a href="https://github.com/bclehmann/phoebus/blob/36c95cd/src/web/index.ts#L65">index.ts:65</a></li>
+					</ul>
+				</aside>
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Returns the result of the query. This function will cache the result by default if the body and URL have not changed since the last fetch.</p>
+					</div>
+				</div>
 				<div class="tsd-type-declaration">
 					<h4>Type declaration</h4>
 					<ul class="tsd-parameters">
 						<li class="tsd-parameter-signature">
-							<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-type-alias">
-								<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>body<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TRequestBody</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TResult</span><span class="tsd-signature-symbol">&gt;</span></li>
+							<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-class">
+								<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>forceRefetch<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/HttpResponse.html" class="tsd-signature-type" data-tsd-kind="Interface">HttpResponse</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TResponse</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
 							</ul>
 							<ul class="tsd-descriptions">
 								<li class="tsd-description">
 									<div class="tsd-comment tsd-typography">
 										<div class="lead">
-											<p>A convenience type for functions who&#39;s results are cached.</p>
+											<p>Returns the result of the query. This function will cache the result by default if the body and URL have not changed since the last fetch.</p>
 										</div>
 									</div>
 									<h4 class="tsd-parameters-title">Parameters</h4>
 									<ul class="tsd-parameters">
 										<li>
-											<h5>body: <span class="tsd-signature-type">TRequestBody</span></h5>
+											<h5><span class="tsd-flag ts-flagOptional">Optional</span> forceRefetch: <span class="tsd-signature-type">boolean</span></h5>
+											<div class="tsd-comment tsd-typography">
+												<div class="lead">
+													<p>Determines whether to recompute the query, even if the cache is valid.</p>
+												</div>
+											</div>
 										</li>
 									</ul>
-									<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TResult</span><span class="tsd-signature-symbol">&gt;</span></h4>
+									<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/HttpResponse.html" class="tsd-signature-type" data-tsd-kind="Interface">HttpResponse</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TResponse</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
+									<p>HttpResponse<TResponse> - The result of the query.</p>
 								</li>
 							</ul>
 						</li>
@@ -2790,7 +2874,6 @@ img {
 				<h2>Legend</h2>
 				<div class="tsd-legend-group">
 					<ul class="tsd-legend">
-						<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
 						<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
 					</ul>
 				</div>

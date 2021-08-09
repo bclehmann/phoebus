@@ -3,8 +3,8 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>@phoebusjs/phoebus-core | @phoebusjs/phoebus-core</title>
-	<meta name="description" content="Documentation for @phoebusjs/phoebus-core">
+	<title>@phoebusjs/phoebus-web | @phoebusjs/phoebus-web</title>
+	<meta name="description" content="Documentation for @phoebusjs/phoebus-web">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<style type="text/css">:root {
   --color-background: #fdfdfd;
@@ -2674,7 +2674,7 @@ img {
 		<div class="container">
 			<div class="table-wrap">
 				<div class="table-cell">
-					<strong><a href="index.html">@phoebusjs/phoebus-core</a></strong>
+					<strong><a href="index.html">@phoebusjs/phoebus-web</a></strong>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -2705,13 +2705,13 @@ img {
 <nav class="tsd-navigation secondary">
 	<ul>
 		<li class=" tsd-kind-class tsd-has-type-parameter">
-			<a href="classes/Query.html" class="tsd-kind-icon">Query</a>
+			<a href="classes/WebQuery.html" class="tsd-kind-icon">Web<wbr>Query</a>
 		</li>
-		<li class=" tsd-kind-class">
-			<a href="classes/Store.html" class="tsd-kind-icon">Store</a>
+		<li class=" tsd-kind-interface tsd-has-type-parameter">
+			<a href="interfaces/HttpResponse.html" class="tsd-kind-icon">Http<wbr>Response</a>
 		</li>
-		<li class=" tsd-kind-type-alias tsd-has-type-parameter">
-			<a href="index.html#Resolver" class="tsd-kind-icon">Resolver</a>
+		<li class=" tsd-kind-type-alias">
+			<a href="index.html#HttpMethod" class="tsd-kind-icon">Http<wbr>Method</a>
 		</li>
 	</ul>
 </nav>
@@ -2724,14 +2724,19 @@ img {
 					<section class="tsd-index-section ">
 						<h3>Classes</h3>
 						<ul class="tsd-index-list">
-							<li class="tsd-kind-class tsd-has-type-parameter"><a href="classes/Query.html" class="tsd-kind-icon">Query</a></li>
-							<li class="tsd-kind-class"><a href="classes/Store.html" class="tsd-kind-icon">Store</a></li>
+							<li class="tsd-kind-class tsd-has-type-parameter"><a href="classes/WebQuery.html" class="tsd-kind-icon">Web<wbr>Query</a></li>
+						</ul>
+					</section>
+					<section class="tsd-index-section ">
+						<h3>Interfaces</h3>
+						<ul class="tsd-index-list">
+							<li class="tsd-kind-interface tsd-has-type-parameter"><a href="interfaces/HttpResponse.html" class="tsd-kind-icon">Http<wbr>Response</a></li>
 						</ul>
 					</section>
 					<section class="tsd-index-section ">
 						<h3>Type aliases</h3>
 						<ul class="tsd-index-list">
-							<li class="tsd-kind-type-alias tsd-has-type-parameter"><a href="index.html#Resolver" class="tsd-kind-icon">Resolver</a></li>
+							<li class="tsd-kind-type-alias"><a href="index.html#HttpMethod" class="tsd-kind-icon">Http<wbr>Method</a></li>
 						</ul>
 					</section>
 				</div>
@@ -2739,49 +2744,19 @@ img {
 		</section>
 		<section class="tsd-panel-group tsd-member-group ">
 			<h2>Type aliases</h2>
-			<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-has-type-parameter">
-				<a name="Resolver" class="tsd-anchor"></a>
-				<h3>Resolver</h3>
-				<div class="tsd-signature tsd-kind-icon">Resolver&lt;TRequestBody, TResult&gt;<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>body<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TRequestBody</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TResult</span><span class="tsd-signature-symbol">&gt;</span></div>
+			<section class="tsd-panel tsd-member tsd-kind-type-alias">
+				<a name="HttpMethod" class="tsd-anchor"></a>
+				<h3>Http<wbr>Method</h3>
+				<div class="tsd-signature tsd-kind-icon">Http<wbr>Method<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">&quot;GET&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;HEAD&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;POST&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;PUT&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;DELETE&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;PATCH&quot;</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/bclehmann/phoebus/blob/36c95cd/src/common/index.ts#L4">index.ts:4</a></li>
+						<li>Defined in <a href="https://github.com/bclehmann/phoebus/blob/36c95cd/src/web/index.ts#L7">index.ts:7</a></li>
 					</ul>
 				</aside>
-				<h4 class="tsd-type-parameters-title">Type parameters</h4>
-				<ul class="tsd-type-parameters">
-					<li>
-						<h4>TRequestBody</h4>
-					</li>
-					<li>
-						<h4>TResult</h4>
-					</li>
-				</ul>
-				<div class="tsd-type-declaration">
-					<h4>Type declaration</h4>
-					<ul class="tsd-parameters">
-						<li class="tsd-parameter-signature">
-							<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-type-alias">
-								<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>body<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TRequestBody</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TResult</span><span class="tsd-signature-symbol">&gt;</span></li>
-							</ul>
-							<ul class="tsd-descriptions">
-								<li class="tsd-description">
-									<div class="tsd-comment tsd-typography">
-										<div class="lead">
-											<p>A convenience type for functions who&#39;s results are cached.</p>
-										</div>
-									</div>
-									<h4 class="tsd-parameters-title">Parameters</h4>
-									<ul class="tsd-parameters">
-										<li>
-											<h5>body: <span class="tsd-signature-type">TRequestBody</span></h5>
-										</li>
-									</ul>
-									<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TResult</span><span class="tsd-signature-symbol">&gt;</span></h4>
-								</li>
-							</ul>
-						</li>
-					</ul>
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Lists the supported HTTP methods</p>
+					</div>
 				</div>
 			</section>
 		</section>
@@ -2790,7 +2765,6 @@ img {
 				<h2>Legend</h2>
 				<div class="tsd-legend-group">
 					<ul class="tsd-legend">
-						<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
 						<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
 					</ul>
 				</div>

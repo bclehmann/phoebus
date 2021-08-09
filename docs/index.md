@@ -2,6 +2,7 @@
 
 ## Documentation:
   - [Core](core)
+  - [Web](web)
 
 ## Links
   - [Github Repo](https://github.com/bclehmann/phoebus)
