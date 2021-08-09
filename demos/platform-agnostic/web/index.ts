@@ -1,4 +1,4 @@
-import { WebQuery } from "../../../src/web";
+import { WebQuery } from "@phoebusjs/phoebus-web";
 
 interface Response {
   data: User;
