@@ -1,5 +1,5 @@
 {
     "dependencies": {
-        "@phoebusjs/phoebus-core": "^0.1.6"
+        "@phoebusjs/phoebus-core": "^0.1.7"
     }
 }
