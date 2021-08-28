@@ -23,7 +23,7 @@ This project has TSdoc comments on all public APIs, and you can see that documen
 
 ## Smart Cache
 
-Implemented in `src/common`, and available for install on [NPM](https://www.npmjs.com/package/@phoebusjs/phoebus-core).
+Implemented in `src/core`, and available for install on [NPM](https://www.npmjs.com/package/@phoebusjs/phoebus-core).
 
 ## Web Wrapper
 
