@@ -23,9 +23,9 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - run: npm install
-        working-directory: ./src/common
+        working-directory: ./src/core
       - run: npm run build
-        working-directory: ./src/common
+        working-directory: ./src/core
       - run: npm install
         working-directory: ./src/web
       - run: npm run build

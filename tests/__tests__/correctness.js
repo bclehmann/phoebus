@@ -1,5 +1,5 @@
 import { jest, describe, it, expect } from "@jest/globals";
-import { Store } from "../../src/common/dist";
+import { Store } from "../../src/core/dist";
 
 describe("produces correct output", () => {
   let count = 0;

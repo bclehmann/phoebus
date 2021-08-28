@@ -31,6 +31,6 @@
     "build": "tsc && npx typedoc index.ts --theme minimal --excludeNotDocumented --readme none --out ../../docs/core",
     "test": "Echo tests can be run from the /tests directory."
   },
-  "types": "src/index.d.ts",
+  "types": "dist/index.d.ts",
   "version": "0.1.6"
 }

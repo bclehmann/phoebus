@@ -1,5 +1,5 @@
 import { jest, describe, it, expect } from "@jest/globals";
-import { Store } from "../../src/common/dist";
+import { Store } from "../../src/core/dist";
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
